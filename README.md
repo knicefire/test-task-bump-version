@@ -46,23 +46,24 @@ npm start -- --owner my-org --repo my-repo --packageName my-package --packageVer
 This will:
 
 1. Locate the `package.json` file containing the specified package.
-2. Update the package version in `dependencies` or `devDependencies`.
+2. Update the package version in package.json dependency properties .
 3. Create a new branch for the update.
 4. Push the changes to the branch.
 5. Create a pull request for the version bump.
 
 ## Features
 
-- Automatically updates both `dependencies` and `devDependencies`.
+- Automatically updates all possible dependency reference in package.json.
 - Creates a sanitized branch name for the release.
 - Logs detailed information about the process.
-- Handles multiple `package.json` files in the repository.
+- Handles multiple `package.json` files in the repository. Warns if there is more than one.
+- Capable of finding `package.json` in nested directory tree.
 
 ## Ideas for Future Improvements
 
-- Provide options for automatic version bumping (major/minor/patch).
+- Provide options for automatic version bumping to the latest major/minor/patch version.
+- Support passing dependency type that needs to be considered
 - Support parsing repo and owner from GitHub URLs.
-- Add input validation for package name and version.
 - Implement dry-run capability to preview changes without making them.
 - Support repositories with multiple `package.json` files.
-- Add README instructions for advanced usage scenarios.
+- Support multiple dependency updates in one pull request

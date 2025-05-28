@@ -5,7 +5,18 @@ type PackageJson = Record<string, any> & {
   version: string;
   dependencies?: Record<string, string>;
   devDependencies?: Record<string, string>;
+  peerDependencies?: Record<string, string>;
+  optionalDependencies?: Record<string, string>;
 };
+
+export const validDependencyTypes = [
+  'dependencies',
+  'devDependencies',
+  'peerDependencies',
+  'optionalDependencies',
+] as const;
+
+type DependencyType = (typeof validDependencyTypes)[number];
 
 export class PackageJsonModifier {
   private packageJson: PackageJson;
@@ -31,10 +42,10 @@ export class PackageJsonModifier {
       packageName: string;
       packageVersion: string;
     },
-    dependencyType: 'dependencies' | 'devDependencies' | 'all' = 'all'
+    dependencyType: 'all' | DependencyType | DependencyType[] = 'all'
   ): void {
     const dependencyProps =
-      dependencyType == 'all' ? ['dependencies', 'devDependencies'] : [dependencyType];
+      dependencyType == 'all' ? validDependencyTypes : [dependencyType].flatMap((type) => type);
 
     // Modifying dependencies only if package is defined and version is different
     dependencyProps.forEach((prop) => {

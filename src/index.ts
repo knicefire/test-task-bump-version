@@ -10,19 +10,20 @@ import { getReleaseBranchName } from './utils';
 /**
  * TODOs:
  * - [] Implement error handling and logging and clean up functionality (clean up branches, etc. if PR cannot be created)
- * - [] Implement tests for the functionality
  * - [] Support passing branch name and package.json path as arguments
  * - [] Support parsing repo and owner from GitHub URL
  * - [] Consider using `@octokit/auth-app` or `@octokit/auth-token` for better auth management
- * - [] Check if package version is valid (semver, exists in npm registry)
  * - [] Add engine checks for Node.js version compatibility
  * - [] Handle existing branches with the same name
  * - [] Support PR name template customization
  * - [] Support multiple package updates in a single PR
- * - [] Support repositories with multiple package.json files
  * - [] Implement dry run capability to preview changes without making them
  * - [] Figure out how to handle package-lock.json updates (if needed)
+ * - [] Add support for providing dependency type that needs to be considered
  * Done
+ * - [x] Check if package version is valid (semver, exists in npm registry)
+ * - [x] Implement tests for the functionality
+ * - [x] Support repositories with multiple package.json files
  * - [x] Prettify the code and ensure it follows best practices
  * - [x] Update README with usage instructions and examples
  * - [x] Skip package.json modification if the version is already up-to-date
